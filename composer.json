@@ -43,6 +43,10 @@
             "Composer\\Config::disableProcessTimeout",
             "bash -c \"[ -f public/index.php ] || cp vendor/codeigniter4/framework/public/index.php public/index.php\"",
             "bash -c \"[ -f spark ] || cp vendor/codeigniter4/framework/spark ./spark\""
+        ],
+
+        "serve": [
+            "@php spark serve --port 8081"
         ]
     },
     "support": {

@@ -89,7 +89,8 @@ php spark db:seed DatabaseSeeder
 
 ```bash
 # Terminal 1 — CodeIgniter dev server
-php spark serve
+## port 8080 kalabalik oldugu icin php spark serve --port 8081 icin composer alias komutuna gecildi kolaylik icin
+composer serve
 ```
 
 ```bash
@@ -97,7 +98,7 @@ php spark serve
 npm run dev
 ```
 
-Tarayıcıda: **http://localhost:8080**
+Tarayıcıda: **http://localhost:8081**
 
 ### Test Hesapları
 
