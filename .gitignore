@@ -1,0 +1,36 @@
+# Ortam
+.env
+
+# Bağımlılıklar
+/vendor/
+/node_modules/
+
+# Build çıktıları
+/public/build/
+
+# Yüklenen dosyalar (örnekler dışında)
+/public/uploads/inventory/*
+!/public/uploads/inventory/.gitkeep
+
+# Writable
+/writable/cache/*
+!/writable/cache/index.html
+/writable/logs/*
+!/writable/logs/index.html
+/writable/session/*
+!/writable/session/index.html
+/writable/uploads/*
+!/writable/uploads/index.html
+/writable/debugbar/*
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# CodeIgniter dev
+php_errors.log

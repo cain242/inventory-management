@@ -1,0 +1,24 @@
+# Apache rewrite rules for CodeIgniter
+Options -Indexes +FollowSymLinks
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTP:Authorization} ^(.*)
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%1]
+
+    # Gerçek dosya/dizin varsa olduğu gibi sun
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Diğer tüm istekleri index.php'ye yönlendir
+    RewriteRule ^([\s\S]*)$ index.php/$1 [L,NC,QSA]
+</IfModule>
+
+<IfModule !mod_rewrite.c>
+    ErrorDocument 404 index.php
+</IfModule>
+
+# Güvenlik: .env erişimini engelle
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
