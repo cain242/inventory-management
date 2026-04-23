@@ -1,8 +1,8 @@
 <?= $this->extend('layouts/main') ?>
 
 <?= $this->section('content') ?>
-<form action="/categories/<?= $category['id'] ?>" method="post">
-
+<form action="/admin/categories/<?= $category['id'] ?>" method="post">
+    <?= csrf_field() ?>
         <div>
             <label class="block text-sm font-medium text-slate-700 mb-1">Ad (2-255 karakter) *</label>
             <input type="text" name="name" value="<?= esc(old('name')) ?>"

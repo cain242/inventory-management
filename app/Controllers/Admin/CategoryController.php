@@ -76,23 +76,30 @@ class CategoryController extends BaseController
         'name' => "required|min_length[2]|max_length[255]|is_unique[categories.name,id,{$id}]", //ignore itself when checking for uniqueness
         'description' => 'permit_empty|max_length[500]']);
 
-        if (! $valid) {
-        // Send them back to the form with their typing (withInput) and the errors
+        if (!$valid) {
         return redirect()->back()->withInput()->with('error', 'Girilen değerler geçerli değil');}
 
         $this->categories->update($id, [
         'name'        => $this->request->getPost('name'),
-        'description' => $this->request->getPost('description'),
-    ]);
+        'description' => $this->request->getPost('description'),]);
+
+        return redirect()->to('/admin/categories')->with('success', 'Kategori başarıyla güncellendi.');
     }
 
     public function delete($id)
-    {
-        // TODO: delete (soft delete? hard?), redirect
-        // Edge case worth thinking about: what happens to inventory items
-        // whose category_id points to a category you're deleting?
-        // Options: cascade delete, prevent delete if any FK refs, nullify.
-        // Per lazim.md you only own categories table — think about this before picking.
-        return redirect()->to('/admin/categories')->with('error', 'delete() not implemented');
+{
+    $category = $this->categories->find($id);
+    
+    if ($category === null) {
+        return redirect()->to('/admin/categories')->with('error', 'Kategori bulunamadı.');
     }
+
+    try {
+        $this->categories->delete($id);
+        return redirect()->to('/admin/categories')->with('success', 'Kategori silindi.');
+
+    } catch (\Exception $e) {
+        return redirect()->to('/admin/categories')->with('error', 'Bu kategori silinemez: Kategoriye bağlı ürünler bulunmaktadır');
+    }
+}    
 }
