@@ -41,26 +41,26 @@ $routes->group('', ['filter' => 'auth'], static function ($routes) {
         // HAFTA 2 — Öğrenci 2: Kategori ve Envanter
         // Modülü yazınca aşağıdaki satırları aç:
         // =====================================================
-        // $routes->group('categories', static function ($routes) {
-        //     $routes->get('/',              'CategoryController::index');
-        //     $routes->get('create',         'CategoryController::create');
-        //     $routes->post('/',             'CategoryController::store');
-        //     $routes->get('(:num)/edit',    'CategoryController::edit/$1');
-        //     $routes->post('(:num)',        'CategoryController::update/$1');
-        //     $routes->post('(:num)/delete', 'CategoryController::delete/$1');
-        // });
-        //
-        // $routes->group('inventory', static function ($routes) {
-        //     $routes->get('/',                     'InventoryController::index');
-        //     $routes->get('create',                'InventoryController::create');
-        //     $routes->post('/',                    'InventoryController::store');
-        //     $routes->get('(:num)',                'InventoryController::show/$1');
-        //     $routes->get('(:num)/edit',           'InventoryController::edit/$1');
-        //     $routes->post('(:num)',               'InventoryController::update/$1');
-        //     $routes->post('(:num)/delete',        'InventoryController::delete/$1');
-        //     $routes->post('(:num)/images',        'InventoryController::uploadImage/$1');
-        //     $routes->post('images/(:num)/delete', 'InventoryController::deleteImage/$1');
-        // });
+         $routes->group('categories', static function ($routes) {
+             $routes->get('/',              'CategoryController::index');
+             $routes->get('create',         'CategoryController::create');
+             $routes->post('/',             'CategoryController::store');
+             $routes->get('(:num)/edit',    'CategoryController::edit/$1');
+             $routes->post('(:num)',        'CategoryController::update/$1');
+             $routes->post('(:num)/delete', 'CategoryController::delete/$1');
+         });
+        
+        $routes->group('inventory', static function ($routes) {
+            $routes->get('/',                     'InventoryController::index');
+            $routes->get('create',                'InventoryController::create');
+            $routes->post('/',                    'InventoryController::store');
+            $routes->get('(:num)',                'InventoryController::show/$1');
+            $routes->get('(:num)/edit',           'InventoryController::edit/$1');
+            $routes->post('(:num)',               'InventoryController::update/$1');
+            $routes->post('(:num)/delete',        'InventoryController::delete/$1');
+            $routes->post('(:num)/images',        'InventoryController::uploadImage/$1');
+            $routes->post('images/(:num)/delete', 'InventoryController::deleteImage/$1');
+        });
 
         // =====================================================
         // HAFTA 4 — Öğrenci 4: Talep Onayı ve Zimmet
