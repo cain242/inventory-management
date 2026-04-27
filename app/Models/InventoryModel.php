@@ -13,8 +13,18 @@ class InventoryModel extends Model
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
-    protected $useTimestamps    = true;
+    protected $useTimestamps    = true; // created_at ve updated_at otomatik dolar
 
-    // TODO: allowedFields, validationRules, relation helpers
-    protected $allowedFields = [];
+    // Controller'dan gelen verilerin kaydedilebilmesi için bu alanlar ŞART
+    protected $allowedFields = [
+        'category_id', 
+        'name', 
+        'serial_no', 
+        'brand', 
+        'purchase_date', 
+        'status', 
+        'notes'
+    ];
+
+    // İstersen buraya validationRules da ekleyebilirsin ama biz Controller'da hallettik.
 }

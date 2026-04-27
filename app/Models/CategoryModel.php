@@ -4,11 +4,6 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-/**
- * HAFTA 2 — Öğrenci 2
- *
- * Kategori modeli. Allowed fields, validation kuralları vs. eklenecek.
- */
 class CategoryModel extends Model
 {
     protected $table            = 'categories';
@@ -17,6 +12,11 @@ class CategoryModel extends Model
     protected $returnType       = 'array';
     protected $useTimestamps    = true;
 
-    // TODO: allowedFields, validationRules
-    protected $allowedFields = [];
+    // Columns from CreateCategoriesTable migration (id + timestamps handled automatically)
+    protected $allowedFields = ['name', 'description'];
+
+    // TODO (you): validation rules — minimum: name is required, unique, max 255
+    // docs: https://codeigniter.com/user_guide/models/model.html#in-model-validation
+    protected $validationRules = [];
+    protected $validationMessages = [];
 }

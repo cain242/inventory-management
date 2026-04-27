@@ -13,8 +13,13 @@ class InventoryImageModel extends Model
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
-    protected $useTimestamps    = true;
+    
+    // Migration dosyasında sadece created_at varsa bunu true bırakabilirsin
+    // ama updated_at yoksa hata almamak için dikkat et.
+    protected $useTimestamps    = true; 
 
-    // TODO: allowedFields
-    protected $allowedFields = [];
+    protected $allowedFields = [
+        'inventory_id', 
+        'file_path'
+    ];
 }

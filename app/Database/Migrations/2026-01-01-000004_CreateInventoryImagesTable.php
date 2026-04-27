@@ -4,20 +4,35 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-/**
- * =====================================================================
- * HAFTA 2 — Öğrenci 2
- * =====================================================================
- * Envanter görselleri tablosu burada oluşturulacak.
- *
- * Kolonlar: id, inventory_id (FK), file_path, created_at
- * =====================================================================
- */
 class CreateInventoryImagesTable extends Migration
 {
     public function up()
     {
-        // TODO: Hafta 2'de doldurulacak
+        $this->forge->addField([
+            'id' => [
+                'type'           => 'INT',
+                'constraint'     => 11,
+                'unsigned'       => true,
+                'auto_increment' => true,
+            ],
+            'inventory_id' => [
+                'type'       => 'INT',
+                'constraint' => 11,
+                'unsigned'   => true,
+            ],
+            'file_path' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 255,
+            ],
+            'created_at' => [
+                'type' => 'DATETIME',
+                'null' => true,
+            ],
+        ]);
+
+        $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('inventory_id', 'inventory', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->createTable('inventory_images');
     }
 
     public function down()
