@@ -11,16 +11,6 @@
         <a href="/admin/categories/create" class="btn-primary">+ Yeni Kategori</a>
     </div>
 
-    <?php if (session()->getFlashdata('success')): ?>
-        <div class="card bg-emerald-50 border-emerald-200">
-            <?= esc(session()->getFlashdata('success')) ?>
-        </div>
-    <?php endif ?>
-    <?php if (session()->getFlashdata('error')): ?>
-        <div class="card bg-rose-50 border-rose-200">
-            <?= esc(session()->getFlashdata('error')) ?>
-        </div>
-    <?php endif ?>
 
     <div class="card p-0 overflow-hidden">
         <table class="w-full text-left">

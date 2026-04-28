@@ -17,6 +17,7 @@ class InventoryImageModel extends Model
     // Migration dosyasında sadece created_at varsa bunu true bırakabilirsin
     // ama updated_at yoksa hata almamak için dikkat et.
     protected $useTimestamps    = true; 
+    protected $updatedField     = ''; // tells CI4 there's no updated_at column
 
     protected $allowedFields = [
         'inventory_id', 

@@ -11,16 +11,30 @@
         <a href="/admin/inventory/create" class="btn-primary">+ Yeni Ürün</a>
     </div>
 
-    <?php if (session()->getFlashdata('success')): ?>
-        <div class="card bg-emerald-50 border-emerald-200 text-emerald-800 p-4 rounded-md border">
-            <?= esc(session()->getFlashdata('success')) ?>
+    <form action="/admin/inventory" method="get" class="card bg-slate-50 border border-slate-200 p-4 rounded-lg flex flex-col sm:flex-row gap-4 items-end">
+        <div class="flex-1">
+            <label class="label text-xs">Marka / Ürün Adı</label>
+            <input type="text" name="brand" value="<?= esc($filter['brand'] ?? '') ?>" placeholder="Aranacak kelime..." class="input text-sm">
         </div>
-    <?php endif ?>
-    <?php if (session()->getFlashdata('error')): ?>
-        <div class="card bg-rose-50 border-rose-200 text-rose-800 p-4 rounded-md border">
-            <?= esc(session()->getFlashdata('error')) ?>
+        <div class="flex-1">
+            <label class="label text-xs">Kategori</label>
+            <select name="category" class="input text-sm py-2">
+                <option value="">Tümü</option>
+                <?php foreach ($categories as $cat): ?>
+                    <option value="<?= $cat['id'] ?>" <?= ($filter['category'] ?? '') == $cat['id'] ? 'selected' : '' ?>>
+                        <?= esc($cat['name']) ?>
+                    </option>
+                <?php endforeach ?>
+            </select>
         </div>
-    <?php endif ?>
+        <div>
+            <button type="submit" class="btn-primary py-2 text-sm">Filtrele</button>
+            <?php if (!empty($filter['brand']) || !empty($filter['category'])): ?>
+                <a href="/admin/inventory" class="btn-secondary py-2 text-sm ml-2">Temizle</a>
+            <?php endif ?>
+        </div>
+    </form>
+
 
     <div class="card p-0 overflow-hidden border border-slate-200 rounded-lg shadow-sm">
         <div class="overflow-y-auto max-h-[calc(100vh-250px)]">
@@ -63,13 +77,13 @@
                                 <td class="px-4 py-3">
                                     <?php 
                                         $statusClasses = [
-                                            'boşta'     => 'bg-emerald-100 text-emerald-700',
-                                            'kullanımda' => 'bg-blue-100 text-blue-700',
-                                            'arızalı'    => 'bg-rose-100 text-rose-700',
+                                            'boşta'     => 'badge-success',
+                                            'kullanımda' => 'badge-info',
+                                            'arızalı'    => 'badge-danger',
                                         ];
-                                        $class = $statusClasses[$item['status']] ?? 'bg-slate-100 text-slate-700';
+                                        $class = $statusClasses[$item['status']] ?? 'badge bg-slate-100 text-slate-700';
                                     ?>
-                                    <span class="px-2 py-1 text-xs font-bold uppercase rounded-full <?= $class ?>">
+                                    <span class="<?= $class ?> uppercase">
                                         <?= esc($item['status']) ?>
                                     </span>
                                 </td>

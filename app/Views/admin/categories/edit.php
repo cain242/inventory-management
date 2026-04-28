@@ -1,23 +1,29 @@
 <?= $this->extend('layouts/main') ?>
 
 <?= $this->section('content') ?>
-<form action="/admin/categories/<?= $category['id'] ?>" method="post">
-    <?= csrf_field() ?>
+<div class="max-w-2xl space-y-6">
+    <div>
+        <h1 class="text-2xl font-bold text-slate-900">Kategori Düzenle: <?= esc($category['name']) ?></h1>
+    </div>
+
+    <form action="/admin/categories/<?= $category['id'] ?>" method="post" class="card space-y-4">
+        <?= csrf_field() ?>
         <div>
-            <label class="block text-sm font-medium text-slate-700 mb-1">Ad (2-255 karakter) *</label>
-            <input type="text" name="name" value="<?= esc(old('name')) ?>"
-                   class="w-full border-slate-300 rounded-md" required>
+            <label class="label">Ad (2-255 karakter) *</label>
+            <input type="text" name="name" value="<?= esc(old('name', $category['name'])) ?>"
+                   class="input" required>
         </div>
 
         <div>
-            <label class="block text-sm font-medium text-slate-700 mb-1">Açıklama (En fazla 500 karakter)</label>
+            <label class="label">Açıklama (En fazla 500 karakter)</label>
             <textarea name="description" rows="3"
-                      class="w-full border-slate-300 rounded-md"><?= esc(old('description')) ?></textarea>
-            <div class="flex justify-end gap-2 pt-2">
-            <a href="/admin/categories" class="btn-ghost">İptal</a>
+                      class="input"><?= esc(old('description', $category['description'])) ?></textarea>
+        </div>
+        
+        <div class="flex justify-end gap-2 pt-2">
+            <a href="/admin/categories" class="btn-secondary">İptal</a>
             <button type="submit" class="btn-primary">Kaydet</button>
         </div>
-        </div>
-
-</form>
+    </form>
+</div>
 <?= $this->endSection() ?>
