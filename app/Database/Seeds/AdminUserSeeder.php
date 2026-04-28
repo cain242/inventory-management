@@ -5,12 +5,7 @@ namespace App\Database\Seeds;
 use CodeIgniter\Database\Seeder;
 use App\Entities\User;
 
-/**
- * HAFTA 1
- * Sistemi test etmek için 1 admin + 1 personel hesabı oluşturur.
- * Shield API kullanılır — email/password auth_identities tablosuna,
- * grup bilgisi auth_groups_users tablosuna yazılır.
- */
+
 class AdminUserSeeder extends Seeder
 {
     public function run()

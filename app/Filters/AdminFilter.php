@@ -6,12 +6,7 @@ use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 
-/**
- * HAFTA 1 — Çekirdek
- *
- * Admin grubunda olmayan kullanıcıları staff dashboard'a yönlendirir.
- * Shield'in group sistemi kullanılır.
- */
+
 class AdminFilter implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
