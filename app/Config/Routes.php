@@ -94,13 +94,14 @@ $routes->group('', ['filter' => 'auth'], static function ($routes) {
         // =====================================================
         // HAFTA 3 — Öğrenci 3: Talep oluşturma ve listeleme
         // =====================================================
-        // $routes->group('requests', static function ($routes) {
-        //     $routes->get('/',              'RequestController::index');        // taleplerim
-        //     $routes->get('create',         'RequestController::create');       // form
-        //     $routes->post('/',             'RequestController::store');
-        //     $routes->get('(:num)',         'RequestController::show/$1');
-        //     $routes->post('(:num)/cancel', 'RequestController::cancel/$1');
-        // });
+        $routes->group('requests', static function ($routes) {
+            $routes->get('/',              'RequestController::index');        // taleplerim
+            $routes->get('create',         'RequestController::create');       // form
+            $routes->post('/',             'RequestController::store');
+            $routes->get('(:segment)',         'RequestController::show/$1');
+            $routes->post('(:segment)/cancel', 'RequestController::cancel/$1');
+            $routes->get('inventory-by-category/(:num)', 'RequestController::getInventoryByCategory/$1'); // AJAX
+        });
     });
 
     // ---------------------------------------------------------------------
