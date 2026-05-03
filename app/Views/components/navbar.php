@@ -31,8 +31,8 @@ $username   = $user ? $user->username : '';
                         <span class="px-3 py-2 rounded-md text-sm font-medium text-slate-400 cursor-not-allowed" title="Hafta 4'te aktif olacak">Zimmetler</span>
                     <?php elseif ($isStaff) : ?>
                         <a href="/staff/dashboard" class="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100">Dashboard</a>
-                        <span class="px-3 py-2 rounded-md text-sm font-medium text-slate-400 cursor-not-allowed" title="Hafta 3'te aktif olacak">Taleplerim</span>
-                        <span class="px-3 py-2 rounded-md text-sm font-medium text-slate-400 cursor-not-allowed" title="Hafta 3'te aktif olacak">Yeni Talep</span>
+                        <a href="/staff/requests" class="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100">Taleplerim</a>
+                        <a href="/staff/requests/create" class="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100">Yeni Talep</a>
                     <?php endif ?>
                 </div>
 

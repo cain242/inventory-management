@@ -4,18 +4,26 @@ namespace App\Controllers\Staff;
 
 use App\Controllers\BaseController;
 
+use App\Models\RequestModel;
+
 class DashboardController extends BaseController
 {
     /**
      * Personel ana sayfası.
-     * Hafta 1'de sadece karşılama ekranı.
-     * Hafta 3'te RequestModel hazır olunca "taleplerim" özeti eklenecek.
      */
     public function index()
     {
+        $requestModel = new RequestModel();
+        $userId = session()->get('user_id');
+        
+        $requests = $requestModel->getRequestsWithDetails($userId);
+        // Sadece en son 5 talebi alalım
+        $recentRequests = array_slice($requests, 0, 5);
+        
         return view('staff/dashboard', [
-            'title'       => 'Personel Paneli',
-            'currentUser' => $this->data['currentUser'],
+            'title'          => 'Personel Paneli',
+            'currentUser'    => $this->data['currentUser'],
+            'recentRequests' => $recentRequests,
         ]);
     }
 }
