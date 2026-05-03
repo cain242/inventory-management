@@ -55,7 +55,30 @@ class AdminUserSeeder extends Seeder
 
             echo "  ✓ Personel oluşturuldu: personel1@envanter.local / Staff123!\n";
         } else {
-            echo "  - Personel zaten mevcut, atlandı.\n";
+            echo "  - Personel 1 zaten mevcut, atlandı.\n";
+        }
+
+        // -----------------------------
+        // Personel 2 hesabı (test için)
+        // -----------------------------
+        $staff2Email = 'personel2@envanter.local';
+        $existing    = $users->findByCredentials(['email' => $staff2Email]);
+
+        if ($existing === null) {
+            $staff2 = new User([
+                'username' => 'personel2',
+                'email'    => $staff2Email,
+                'password' => 'Staff123!',
+            ]);
+            $users->save($staff2);
+
+            // Kaydedilen kullanıcıyı al ve staff grubuna ekle
+            $staff2 = $users->findById($users->getInsertID());
+            $staff2->addGroup('staff');
+
+            echo "  ✓ Personel 2 oluşturuldu: personel2@envanter.local / Staff123!\n";
+        } else {
+            echo "  - Personel 2 zaten mevcut, atlandı.\n";
         }
     }
 }
