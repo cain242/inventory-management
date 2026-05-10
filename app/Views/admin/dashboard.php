@@ -53,21 +53,21 @@
                     <div class="font-medium text-slate-900">Hafta 2 — Envanter Modülü</div>
                     <div class="text-xs text-slate-500">Kategori ve ürün CRUD, görsel yükleme</div>
                 </div>
-                <span class="badge bg-slate-100 text-slate-700">Bekliyor</span>
+                <span class="badge-success">Tamamlandı</span>
             </div>
             <div class="flex items-center justify-between py-2 border-b border-slate-100">
                 <div>
                     <div class="font-medium text-slate-900">Hafta 3 — Talep Modülü</div>
                     <div class="text-xs text-slate-500">Personel talep formu ve validasyon</div>
                 </div>
-                <span class="badge bg-slate-100 text-slate-700">Bekliyor</span>
+                <span class="badge-success">Tamamlandı</span>
             </div>
             <div class="flex items-center justify-between py-2 border-b border-slate-100">
                 <div>
                     <div class="font-medium text-slate-900">Hafta 4 — Onay ve Zimmet</div>
                     <div class="text-xs text-slate-500">Admin onay paneli ve zimmetleme</div>
                 </div>
-                <span class="badge bg-slate-100 text-slate-700">Bekliyor</span>
+                <span class="badge-success">Tamamlandı</span>
             </div>
             <div class="flex items-center justify-between py-2">
                 <div>

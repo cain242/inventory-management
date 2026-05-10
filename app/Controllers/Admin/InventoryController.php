@@ -7,11 +7,6 @@ use App\Models\InventoryModel;
 use App\Models\InventoryImageModel;
 use App\Models\CategoryModel;
 
-/**
- * =====================================================================
- * HAFTA 2 — Öğrenci 2: Envanter (Ürün) Yönetimi
- * =====================================================================
- */
 class InventoryController extends BaseController
 {
     protected $inventory;
@@ -25,10 +20,6 @@ class InventoryController extends BaseController
         $this->categories = new CategoryModel();
     }
 
-    /**
-     * Envanter Listesi - Arama ve Filtreleme dahil.
-     * Route: GET /admin/inventory
-     */
     public function index()
     {
         $brand    = $this->request->getGet('brand');
@@ -55,10 +46,6 @@ class InventoryController extends BaseController
         return view('admin/inventory/index', $data);
     }
 
-    /**
-     * Yeni Ürün Formu
-     * Route: GET /admin/inventory/create
-     */
     public function create()
     {
         return view('admin/inventory/create', [
@@ -66,10 +53,6 @@ class InventoryController extends BaseController
         ]);
     }
 
-    /**
-     * Yeni Ürün Kaydı
-     * Route: POST /admin/inventory
-     */
     public function store()
     {
         $rules = [
@@ -96,10 +79,6 @@ class InventoryController extends BaseController
         return redirect()->to('/admin/inventory')->with('success', 'Ürün başarıyla eklendi.');
     }
 
-    /**
-     * Ürün Detay ve Görsel Galerisi
-     * Route: GET /admin/inventory/(:num)
-     */
     public function show($id)
     {
         $item = $this->inventory->select('inventory.*, categories.name as category_name')
@@ -116,10 +95,6 @@ class InventoryController extends BaseController
         ]);
     }
 
-    /**
-     * Ürün Düzenleme Formu
-     * Route: GET /admin/inventory/(:num)/edit
-     */
     public function edit($id)
     {
         $item = $this->inventory->find($id);
@@ -131,10 +106,6 @@ class InventoryController extends BaseController
         ]);
     }
 
-    /**
-     * Ürün Güncelleme
-     * Route: POST /admin/inventory/(:num)
-     */
     public function update($id)
     {
         if (!$this->inventory->find($id)) return redirect()->to('/admin/inventory')->with('error', 'Ürün bulunamadı.');
@@ -162,10 +133,6 @@ class InventoryController extends BaseController
         return redirect()->to('/admin/inventory')->with('success', 'Ürün güncellendi.');
     }
 
-    /**
-     * Ürün Silme
-     * Route: POST /admin/inventory/(:num)/delete
-     */
     public function delete($id)
     {
         try {
@@ -182,10 +149,6 @@ class InventoryController extends BaseController
         }
     }
 
-    /**
-     * Görsel Yükleme
-     * Route: POST /admin/inventory/(:num)/images
-     */
     public function uploadImage($id)
     {
         $files = $this->request->getFiles();
@@ -205,27 +168,22 @@ class InventoryController extends BaseController
             }
         }
 
-        return redirect()->back()->with('success', 'Görseller yüklendi.');
+        return redirect()->to("/admin/inventory/{$id}")->with('success', 'Görseller yüklendi.');
     }
 
-    /**
-     * Görsel Silme
-     * Route: POST /admin/inventory/images/(:num)/delete
-     */
     public function deleteImage($imageId)
     {
         $image = $this->images->find($imageId);
         
         if ($image) {
-            // Fiziksel dosyayı sil
+            
             $path = ROOTPATH . 'public/' . $image['file_path'];
             if (file_exists($path)) {
                 unlink($path);
             }
-            // Veritabanı kaydını sil
             $this->images->delete($imageId);
         }
 
-        return redirect()->back()->with('success', 'Görsel silindi.');
+        return redirect()->to("/admin/inventory/{$image['inventory_id']}")->with('success', 'Görsel silindi.');
     }
 }
