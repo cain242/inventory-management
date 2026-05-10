@@ -34,3 +34,6 @@ Thumbs.db
 
 # CodeIgniter dev
 php_errors.log
+
+# Push script
+push_to_github.sh

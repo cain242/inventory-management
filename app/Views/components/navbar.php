@@ -27,8 +27,8 @@ $username   = $user ? $user->username : '';
                         <a href="/admin/dashboard" class="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100">Dashboard</a>
                         <a href="/admin/inventory" class="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100">Envanter</a>
                         <a href="/admin/categories" class="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100">Kategoriler</a>
-                        <span class="px-3 py-2 rounded-md text-sm font-medium text-slate-400 cursor-not-allowed" title="Hafta 4'te aktif olacak">Talepler</span>
-                        <span class="px-3 py-2 rounded-md text-sm font-medium text-slate-400 cursor-not-allowed" title="Hafta 4'te aktif olacak">Zimmetler</span>
+                        <a href="/admin/requests" class="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100">Talepler</a>
+                        <a href="/admin/assignments" class="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100">Zimmetler</a>
                     <?php elseif ($isStaff) : ?>
                         <a href="/staff/dashboard" class="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100">Dashboard</a>
                         <a href="/staff/requests" class="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100">Taleplerim</a>

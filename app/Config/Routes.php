@@ -65,19 +65,17 @@ $routes->group('', ['filter' => 'auth'], static function ($routes) {
         // =====================================================
         // HAFTA 4 — Öğrenci 4: Talep Onayı ve Zimmet
         // =====================================================
-        // $routes->group('requests', static function ($routes) {
-        //     $routes->get('/',               'RequestController::index');
-        //     $routes->get('(:num)',          'RequestController::show/$1');
-        //     $routes->post('(:num)/approve', 'RequestController::approve/$1');
-        //     $routes->post('(:num)/reject',  'RequestController::reject/$1');
-        // });
-        //
-        // $routes->group('assignments', static function ($routes) {
-        //     $routes->get('/',              'AssignmentController::index');
-        //     $routes->get('create',         'AssignmentController::create');
-        //     $routes->post('/',             'AssignmentController::store');
-        //     $routes->post('(:num)/return', 'AssignmentController::returnItem/$1');
-        // });
+        $routes->group('requests', static function ($routes) {
+            $routes->get('/',               'RequestController::index');
+            $routes->post('(:num)/approve', 'RequestController::approve/$1');
+            $routes->post('(:num)/reject',  'RequestController::reject/$1');
+        });
+
+        $routes->group('assignments', static function ($routes) {
+            $routes->get('/',              'AssignmentController::index');
+            $routes->get('(:num)',         'AssignmentController::show/$1');
+            $routes->get('print/(:num)',   'AssignmentController::print/$1');
+        });
     });
 
     // ---------------------------------------------------------------------
